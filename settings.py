@@ -20,11 +20,11 @@ INSTALLED_APPS = (
     'djangotoolbox',
     'autoload',
     'dbindexer',
+    'blog',
+    #'posta-to.adminpanel',
 
     # djangoappengine should come last, so it can override a few manage.py commands
     'djangoappengine',
-    #'posta-to.blog',
-    #'posta-to.adminpanel',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -50,3 +50,7 @@ ADMIN_MEDIA_PREFIX = '/media/admin/'
 TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), 'templates'),)
 
 ROOT_URLCONF = 'urls'
+
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
+LOGIN_REDIRECT_URL = '/'
