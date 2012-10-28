@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div id="current"> 
+    <div class="spacer"></div>  
+    <div id="post">
     <form action="{% url blog.views.new_post %}" method="post" accept-charset="utf-8">
         {% csrf_token %}
         {{ form.as_p }}
         <p><input type="submit" value="Post!"/></p>
     </form>
+	</div>
+</div>
 {% endblock %}

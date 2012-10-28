@@ -1,4 +1,4 @@
-from models import Post
+from models import Post, Comment
 from django import forms
 
 class PostForm(forms.ModelForm):
@@ -16,3 +16,19 @@ class PostForm(forms.ModelForm):
 			post.save()
 
 		return post
+
+class CommentForm(forms.ModelForm):
+	class Meta:
+		model = Comment
+		exclude = ('user', 'post',)
+
+	def save(self, user, content, post, commit = True):
+		comment = super(CommentForm, self).save(commit = False)
+		comment.user = user
+		comment.post = post
+		comment.content = content
+
+		if commit:
+			comment.save()
+
+		return comment

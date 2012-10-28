@@ -4,16 +4,21 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from forms import PostForm
-from models import Post
+from models import Post, Comment
 
-def view_all_posts(request):
-	posts = Post.objects.all()
+def view_posts(request, id=None):
+	if id is not None:
+		posts = Post.objects.exclude(id=int(id)).order_by('-date')
+		current = Post.objects.get(id=int(id))
+		coms = Comment.objects.filter(post=int(id))
+	else:
+		posts = Post.objects.all().order_by('-date')
+		current = Post.objects.get(id=posts[0].id)
+		coms = Comment.objects.filter(post=posts[0].id)
+
 	return render_to_response('posts.html',
 		locals(), context_instance=RequestContext(request)
 	)
-
-#def view_post():
-#	pass
 
 @login_required
 def new_post(request):
@@ -24,7 +29,21 @@ def new_post(request):
 			title = form.cleaned_data['title']
 			content = form.cleaned_data['content']
 			form.save(request.user, title, content)
-			return HttpResponseRedirect(reverse('blog.views.view_all_posts'))
+			return HttpResponseRedirect(reverse('blog.views.view_posts'))
+	return render_to_response('new_post.html',
+		locals(), context_instance=RequestContext(request)
+	)
+
+@login_required
+def new_comment(request):
+	form = CommentForm()
+	if request.method == 'POST':
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			content = form.cleaned_data['content']
+			post = request['current']['id']
+			form.save(request.user, content, post)
+			return HttpResponseRedirect(reverse('blog.views.view_posts'))
 	return render_to_response('new_post.html',
 		locals(), context_instance=RequestContext(request)
 	)
@@ -34,9 +53,6 @@ def edit_post():
 	pass
 
 def delete_post():
-	pass
-
-def new_comment():
 	pass
 
 def edit_post():

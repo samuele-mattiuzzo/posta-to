@@ -27,4 +27,10 @@ class Post(models.Model):
 	plus_votes = 0
 	down_votes = 0
 
+class Comment(models.Model):
+	user = models.ForeignKey(User)
+	content = models.CharField(max_length = 100)
+	date = models.DateTimeField(auto_now_add = True)
+	post = models.ForeignKey(Post)
+
 

@@ -1,53 +1,80 @@
 <!DOCTYPE html 
      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
     dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
     xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
     lang="{% firstof LANGUAGE_CODE 'en' %}">
+
   <head>
-    <title>{% block title %}{% endblock %} - Nonrel-testapp</title>
+    <title>{% block title %}Postato blogging application{% endblock %}</title>
 
     {% block css %}
+      <link href="/media/css/style.css" rel="stylesheet" type="text/css" />
     {% endblock %}
 
     {% block preload_js %}
+      <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.js"></script>
     {% endblock %}
+
+    {% block page_scripts %}{% endblock %}
 
     {% block extra-head %}{% endblock %}
-  </head>
 
-  <body>
-    <div id="header">
-      <a id="logo" href="/">Nonrel-testapp</a>
-    </div>
+<!-- main content starts here -->
+<div id="container">
+  <div id="postatobar">
+    <span class="posta">POSTA</span>TO
+  </div>
+  <div id="titlebar"> 
+    {% if user.is_authenticated %}
+    Welcome to postato, <span class="logged">{{ user.username }}</span> 
+    {% else %}
+    <span class="guest">Login in order to comment and rate posts</span>
+    {% endif %}
+  </div>
 
-    <div class="columns">
-      <div id="content" class="column">
-        {% block content-header %}
-          {% if error %}<div class="error">{{ error }}</div>{% endif %}
-          {% if info %}<div class="info">{{ info }}</div>{% endif %}
-          {% if messages %}
-            {% for message in messages %}
-              <div class="info">{{ message }}</div>
-            {% endfor %}
-          {% endif %}
-        {% endblock %}
-
-        {% block content %}{% endblock %}
-      </div>
-
-      <div id="sidebar" class="column">
-        {% block sidebar %}
-        {% endblock %}
-      </div>
-    </div>
-
-    <div id="footer">
-      <p>Powered by <a href="https://github.com/django-nonrel">Django-nonrel</a></p>
-    </div>
-
-    {% block js %}
+  <div id="main">
+    
+    {% block content %}
     {% endblock %}
-  </body>
+
+    <!-- menu column -->
+    <div class="menu"> 
+      <ul>
+        <li><a href="https://github.com/samuele-mattiuzzo/posta-to" target="_blank">GITHUB</a></li>
+        <li class="last"><a href="/about/">ABOUT</a></li>
+      </div>
+    <div class="menu"> 
+      <ul>
+          <li><a href="/">HOME</a></li>
+
+        {% if user.is_authenticated %}
+          <li><a href="/logout/">LOGOUT</a></li>
+          <!-- tbd <li><a href="/charts/">CHARTS</a></li> -->
+          <li class="last"><a href="/posts/new/">NEW POST</a></li>
+        {% else %}
+          <li class="last"><a href="/login/">LOGIN</a></li>
+        {% endif %}
+
+      </div>
+    
+    
+
+    <div class="spacer"></div>
+  </div>
+
+  <div id="history">
+      {% block history %}
+      {% endblock %}
+  </div>
+  
+
+  <div class="spacer"></div>
+  <div id="footer">
+    <a href="mailto:samumatt@gmail.com">Samuele Mattiuzzo</a> &copy; 2012
+  </div>
+<!-- close #container -->
+</div>
 </html>

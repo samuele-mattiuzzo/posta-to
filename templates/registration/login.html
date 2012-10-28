@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<div id="current"> 
+      <div class="spacer"></div>  
+      <div id="post">
 <p>Fill the form below to login in the system ;)</p>
 
 {% if form.errors %}
@@ -19,9 +21,12 @@
     <td>{{ form.password }}</td>
 </tr>
 </table>
-
+	
 <input type="submit" value="login" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
+
+</div>
+</div>
 
 {% endblock %}

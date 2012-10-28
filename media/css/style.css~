@@ -1,0 +1,324 @@
+/**
+
+	Color palette:
+
+	#7F7F7F
+	#FFFFFF
+	#BFBFBF
+	#404040
+	#B4F257 (POSTA's color in title)
+	#FFFFE0 (comments background, puky yellow)
+
+*/
+
+* { font-family:"Arial Verdana", Arial, sans-serif; }
+body { background-color: #7F7F7F; }
+
+/* Container (duh?) */
+#container{
+	border: 1px solid #000;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #BFBFBF;
+	width: 1000px; 
+	margin:0 auto;
+}
+
+/* Top bar - blog title */
+#postatobar{
+	font-family:"cursive", cursive, sans-serif;
+	text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+	height:80px;
+	font-size: 45px; 
+	padding: 5px;
+	background-color: #404040;
+	width:auto; 
+	display:block; 
+	
+}
+
+#postatobar span.posta {
+	font-family:"cursive", cursive, sans-serif;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	color:#B4F257;
+}
+
+
+/* Welcomebar */
+#titlebar{
+	background-color: #404040;
+	color: #FFF;	
+	-moz-border-radius: 5px;
+    border-radius: 5px;
+
+	border: 1px solid #000;
+	width:auto; 
+	display:block; 
+	height:24px;
+	margin: 5px 5px 5px 5px;
+	text-align: center;
+	padding: 5px;
+	
+}
+
+#titlebar span.logged {
+	color: #B4F257;
+}
+
+
+/* Main div */
+#main{ width:auto; display:block; min-height: 250px; margin-left: 5px;}
+
+/* Currently selected post */
+#main #current{
+	width:760px; 
+	margin-right:20px; 
+	float:left;
+}
+
+/* The post */
+#main #current #post{
+	border: 2px solid #000;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #FFF;
+	width: 98%;
+	margin: auto;
+	padding: 5px;
+	display: block;
+}
+
+#main #current #post p.title {
+	width: auto;
+	display: block;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	
+}
+
+#main #current #post p.content {
+	width: auto;
+	display: block;
+	text-align: left;
+	font-size: 14px;
+	
+}
+
+
+#main #current #post p.author {
+	width: auto;
+	display: block;
+	text-align: right;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#main #current #post div.extras {
+	width: auto;
+	display: block;
+	text-align: right;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+#main #current #post div.extras a.promote {text-decoration: none; color: #000;}
+#main #current #post div.extras a.promote:hover {text-decoration: none; color: green;}
+#main #current #post div.extras span.promote {color: green;}
+
+#main #current #post div.extras a.demote {text-decoration: none; color: #000;}
+#main #current #post div.extras a.demote:hover {text-decoration: none; color: red;}
+#main #current #post div.extras span.demote {color: red;}
+
+/* The comments */
+#main #current #comments {
+	border: 2px solid #000;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #FFFFE0;
+	width: 95%;
+	margin: auto;
+	display: block;
+	padding: 10px;
+}
+
+#main #current #comments #post_a_comment{
+	margin-top: 25px;
+	width: auto;
+	text-align: center;
+	display: block;
+}
+
+#main #current #comments #post_a_comment form { margin: auto; }
+#main #current #comments a.expand { 
+	width: auto;
+	display: block;	
+	margin: auto; 
+	text-align: center;
+	font-size: 14px;
+	text-decoration: none;
+	color: #000;
+	padding: 5px;
+}
+
+#main #current #comments a.expand:hover { 
+	background-color: #404040;
+	color: #B4F257;
+}
+
+#main #current #comments div.comment {
+	background-color: #FFFFE0;
+	border-bottom: 1px solid #000;
+	padding: 15px;
+}
+
+#main #current #comments div.comment span.user {
+	font-weight: bold;
+	font-size: 12px;
+}
+
+#main #current #comments div.comment span.text {
+	font-size: 12px;
+}
+
+/* History items */
+#history {
+	-moz-border-radius: 5px;
+    border-radius: 5px;
+	margin: auto;
+	width: auto;
+	display: block;
+	text-align: center;
+}
+
+#history div.listitem {
+	border: 1px solid #000;
+	-moz-border-radius: 5px;
+    border-radius: 5px;
+	width: 120px;
+	height: 100px;
+	margin: 5px;
+	display: inline-block;
+	padding: 20px 0px 0px 0px;
+}
+
+.good { background-color: lightgreen; }
+.bad { background-color: red; }
+.meh { background-color: yellow; }
+
+#history div.listitem div.title {
+	width: auto;
+	height: 60px;
+	background-color: #FFF;
+	margin: 0 auto;
+	border-top: 1px solid #000;
+}
+
+#history div.listitem div.title a {text-decoration: none; color: #000;}
+#history div.listitem div.title a:hover {text-decoration: none; color: red;}
+
+#history div.listitem div.commentcount {
+	border-bottom: 1px solid #000;
+	background-color: #404040;
+	font-weight: bold
+	width: auto;
+	color: #FFFFFF;
+	height: 20px;
+	margin: 0 auto;
+}
+
+
+/* Menu (rightbar) */
+#main .menu{
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin-top: 23px;
+	border: 2px solid #000;
+	width:200px; 
+	float:left;
+}
+
+#main .menu ul {
+	width: auto;
+	display: block;
+	background-color: #FFF;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	list-style: none;
+	padding-right: 40px;
+}
+
+#main .menu ul li {
+	width: auto;
+	border-bottom: 1px solid #000;
+	padding-top: 15px;
+	height: 40px;
+	font-size: 20px;
+	text-align: center;
+	margin: auto;
+}
+
+#main .menu ul li.last {
+	width: auto;
+	border-bottom: none;
+	padding-top: 10px;
+	height: 40px;
+	font-size: 20px;
+	text-align: center;
+	margin: auto;
+}
+
+#main .menu ul li:hover, li.last:hover{ background-color: #B4F257; }
+#main .menu ul li a, a:hover { color: #000; text-decoration: none; }
+
+/* Generic spacer - lovely */
+div.spacer{clear:both; height:25px; display:block;}
+
+/* Footer elements */
+#footer{
+	font-family:"cursive", cursive, sans-serif;
+	text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+	text-align: center;
+	font-size: 25px;	
+	height:40px;
+	padding: 5px;
+	background-color: #404040;
+	width:auto; 
+	display:block; 
+}
+
+#footer a{
+	color: #000;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	color:#B4F257;
+}
+
+/* Form items */
+input    {
+width:150px;
+border: 1px solid #999;
+height: 25px;
+display: block;
+-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+textarea#text   {
+border: 1px solid #999;
+width:500px;
+height: 80px;
+display: block;
+-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+textarea.message { display: block; }
+
+
+
