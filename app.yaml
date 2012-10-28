@@ -35,6 +35,10 @@ handlers:
 - url: /media/img/
   static_dir: media/img
 
+- url: /favicon.ico
+  static_files: media/img/favicon.ico
+  upload: media/img/favicon.ico
+
 - url: /.*
   script: djangoappengine.main.application
 
