@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     ('^posts/$', 'blog.views.view_posts'),
     ('^posts/(?P<id>\d+)/$', 'blog.views.view_posts'),
     ('^posts/new/$', 'blog.views.new_post'),
+    ('^comment/new/$', 'blog.views.new_comment'),
 
 )

@@ -13,8 +13,12 @@ def view_posts(request, id=None):
 		coms = Comment.objects.filter(post=int(id))
 	else:
 		posts = Post.objects.all().order_by('-date')
-		current = Post.objects.get(id=posts[0].id)
-		coms = Comment.objects.filter(post=posts[0].id)
+		if len(posts) > 0:
+			current = Post.objects.get(id=posts[0].id)
+			coms = Comment.objects.filter(post=posts[0].id)
+		else:
+			current = None
+			coms = None
 
 	return render_to_response('posts.html',
 		locals(), context_instance=RequestContext(request)
@@ -47,21 +51,3 @@ def new_comment(request):
 	return render_to_response('new_post.html',
 		locals(), context_instance=RequestContext(request)
 	)
-
-'''
-def edit_post():
-	pass
-
-def delete_post():
-	pass
-
-def edit_post():
-	pass
-
-def delete_post():
-	pass
-
-def static_page():
-	pass
-
-'''

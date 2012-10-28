@@ -6,11 +6,13 @@ class PostForm(forms.ModelForm):
 		model = Post
 		exclude = ('user',)
 
-	def save(self, user, title, content, commit = True):
+	def save(self, user, title, content, plus_votes = 0, down_votes = 0, commit = True):
 		post = super(PostForm, self).save(commit = False)
 		post.user = user
 		post.title = title
 		post.content = content
+		post.plus_votes = plus_votes
+		post.down_votes = down_votes
 
 		if commit:
 			post.save()

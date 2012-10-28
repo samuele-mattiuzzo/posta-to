@@ -2,14 +2,14 @@
 
 {% block page_scripts %}
 <script type="text/javascript">
-		$(document).ready(function(){
-			$(".sub_comments").hide();
-			$(".expand").click(function(){
-				$(".sub_comments").toggle("fast");
-				$(this).toggleClass("active");
-				return false;
-			});
+	$(document).ready(function(){
+		$(".sub_comments").hide();
+		$(".expand").click(function(){
+    		$(".sub_comments").toggle("fast");
+    		return false;
 		});
+	});
+
 </script>
 {% endblock %}
 
@@ -33,38 +33,42 @@
           ( <span class="promote">{{ current.plus_votes }}</span> / <span class="demote">{{ current.down_votes }}</span>)
         </div>
         {% endif %}
+        {% else %}
+        	Sorry ): we have no posts
+        {% endif %}
 
       </div>
 
+      <!-- comments -->
       <div id="comments">
 
-      	<!-- comments -->
+      	
       	{% if coms %}
-        <a href="" class="expand">Expand {{ coms }} comments</a>
+        <a href="" class="expand">Expand {{ coms.count }} comments</a>
         <div class="sub_comments">
         	{% for c in coms %}
         		<div class="comment"><span class="user">{{ c.user }} said:</span><span class="text"> {{ c.content }}</span></div>
         	{% endfor %}
         {% else %}
-        <a href="" class="expand">Be the first to leave a comment {%if not user.is_authenticated %}(login required){% endif %}</a>
+
+        <a href="" onclick="expand(); return false;" class="expand">Be the first to leave a comment {%if not user.is_authenticated %}(login required){% endif %}</a>
         <div class="sub_comments">
         {% endif %}
 
         <!-- comment form -->
         {% if user.is_authenticated %}
         <div id="post_a_comment">
-          <form action="/comments/add/" method="POST">
-            <textarea iplaceholder="Insert your comment..." ></textarea> <input type="submit" value="COMMENT">       
+          <form action="{% url blog.views.new_comment %}" method="POST">
+            {% csrf_token %}
+        	{{ form.as_p }}
+        	<input type="submit" value="COMMENT">       
           </form>
         </div>
-        {% endif %}
-        {% else %}
-        <!--no posts to display -->
-        	Sorry ): We have no posts...
         {% endif %}
 
         </div>
       </div>
+
       <div class="spacer"></div>  
     </div>
 {% endblock %}
@@ -72,7 +76,7 @@
 {% block history %}
 	{% if posts %}
 	{% for post in posts %}
-	<div class="listitem ">
+	<div class="listitem {{ post.get_rating }}">
         <div class="title"><a href="/posts/{{ post.id }}/">{{ post.title|truncatewords:5 }}</a></div>
         <div class="commentcount">
           {{ post.date|date:"d M Y"  }}
