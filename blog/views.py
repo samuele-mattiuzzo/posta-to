@@ -32,8 +32,9 @@ def new_post(request):
 		if form.is_valid():
 			title = form.cleaned_data['title']
 			content = form.cleaned_data['content']
-			form.save(request.user, title, content)
-			return HttpResponseRedirect(reverse('blog.views.view_posts'))
+			post = form.save(request.user, title, content)
+			return HttpResponseRedirect('/posts/%d/' % post.id)
+
 	return render_to_response('new_post.html',
 		locals(), context_instance=RequestContext(request)
 	)
@@ -41,13 +42,17 @@ def new_post(request):
 @login_required
 def new_comment(request):
 	form = CommentForm()
-	if request.method == 'POST':
+	if request.method == 'POST' or request.is_ajax():
 		form = CommentForm(request.POST)
 		if form.is_valid():
 			content = form.cleaned_data['content']
 			post = request['current']
 			form.save(request.user, content, post)
-			return HttpResponseRedirect(reverse('blog.views.view_posts'))
+			return 'gg'
+			#return HttpResponseRedirect('/posts/%d/' % post.id)
+		else:
+			return form.errors
+
 	return render_to_response('posts.html',
 		locals(), context_instance=RequestContext(request)
 	)

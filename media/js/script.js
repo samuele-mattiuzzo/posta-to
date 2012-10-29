@@ -1,10 +1,10 @@
-function submitComment() { // catch the form's submit event
-    $.ajax({ // create an AJAX call...
-        data: $(this).serialize(), // get the form data
-        type: $(this).attr('method'), // GET or POST
-        url: $(this).attr('action'), // the file to call
-        success: function(response) { // on success..
-            $('#DIV_CONTAINING_FORM').html(response); // update the DIV
+function submitComment() { 
+    $.ajax({ 
+        data: $(this).serialize(), 
+        type: $(this).attr('method'), 
+        url: $(this).attr('action'), 
+        success: function(response) { 
+            $('.sub_comments').html(response);
         }
     });
     return false;

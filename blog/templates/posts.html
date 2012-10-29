@@ -60,7 +60,7 @@
           <form action="{% url blog.views.new_comment %}" method="POST">
             {% csrf_token %}
         	<textarea tid="content" placeholder="Insert your comment..."></textarea>
-        	<input type="submit" value="COMMENT">       
+        	<input type="submit" onclick="submitComment(); return false;" value="COMMENT">       
           </form>
         </div>
         {% endif %}
