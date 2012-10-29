@@ -27,7 +27,7 @@ class Post(models.Model):
 		
 		if rate_up > (rate_down + 0.3):
 			return 'good'
-		elif rate_down < (rate_up - 0.3):
+		elif rate_down > (rate_up - 0.3):
 			return 'bad'
 		else:
 			return 'meh'

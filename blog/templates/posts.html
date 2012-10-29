@@ -3,7 +3,6 @@
 {% block page_scripts %}
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(".sub_comments").hide();
 		$(".expand").click(function(){
     		$(".sub_comments").toggle("fast");
     		return false;
@@ -30,7 +29,7 @@
         {% if user.is_authenticated %}
         <div class="extras">
           <a href="" class="promote">Promote [+]</a> | <a href="" class="demote">Demote [-]</a> 
-          ( <span class="promote">{{ current.plus_votes }}</span> / <span class="demote">{{ current.down_votes }}</span>)
+          ( <span class="promote">{{ current.plus_votes|floatformat }}</span> / <span class="demote">{{ current.down_votes|floatformat }}</span> )
         </div>
         {% endif %}
         {% else %}
@@ -45,14 +44,14 @@
       	
       	{% if coms %}
         <a href="" class="expand">Expand {{ coms.count }} comments</a>
-        <div class="sub_comments">
+        <div class="sub_comments" style="display: none;">
         	{% for c in coms %}
         		<div class="comment"><span class="user">{{ c.user }} said:</span><span class="text"> {{ c.content }}</span></div>
         	{% endfor %}
         {% else %}
 
         <a href="" onclick="expand(); return false;" class="expand">Be the first to leave a comment {%if not user.is_authenticated %}(login required){% endif %}</a>
-        <div class="sub_comments">
+        <div class="sub_comments" style="display: none;">
         {% endif %}
 
         <!-- comment form -->
@@ -60,7 +59,7 @@
         <div id="post_a_comment">
           <form action="{% url blog.views.new_comment %}" method="POST">
             {% csrf_token %}
-        	{{ form.as_p }}
+        	<textarea tid="content" placeholder="Insert your comment..."></textarea>
         	<input type="submit" value="COMMENT">       
           </form>
         </div>

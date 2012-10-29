@@ -3,19 +3,19 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from forms import PostForm
+from forms import PostForm, CommentForm
 from models import Post, Comment
 
 def view_posts(request, id=None):
 	if id is not None:
 		posts = Post.objects.exclude(id=int(id)).order_by('-date')
 		current = Post.objects.get(id=int(id))
-		coms = Comment.objects.filter(post=int(id))
+		coms = Comment.objects.filter(post=current)
 	else:
 		posts = Post.objects.all().order_by('-date')
 		if len(posts) > 0:
 			current = Post.objects.get(id=posts[0].id)
-			coms = Comment.objects.filter(post=posts[0].id)
+			coms = Comment.objects.filter(post=posts[0])
 		else:
 			current = None
 			coms = None
@@ -45,9 +45,9 @@ def new_comment(request):
 		form = CommentForm(request.POST)
 		if form.is_valid():
 			content = form.cleaned_data['content']
-			post = request['current']['id']
+			post = request['current']
 			form.save(request.user, content, post)
 			return HttpResponseRedirect(reverse('blog.views.view_posts'))
-	return render_to_response('new_post.html',
+	return render_to_response('posts.html',
 		locals(), context_instance=RequestContext(request)
 	)

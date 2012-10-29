@@ -4,7 +4,7 @@ from django import forms
 class PostForm(forms.ModelForm):
 	class Meta:
 		model = Post
-		exclude = ('user',)
+		exclude = ('user', 'plus_votes', 'down_votes',)
 
 	def save(self, user, title, content, plus_votes = 0, down_votes = 0, commit = True):
 		post = super(PostForm, self).save(commit = False)
@@ -22,7 +22,7 @@ class PostForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
 	class Meta:
 		model = Comment
-		exclude = ('user', 'post',)
+		exclude = ('user', 'post', )
 
 	def save(self, user, content, post, commit = True):
 		comment = super(CommentForm, self).save(commit = False)
