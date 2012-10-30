@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_scripts %}
+<!-- slider for the comments section -->
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".expand").click(function(){
@@ -8,8 +9,40 @@
     		return false;
 		});
 	});
-
 </script>
+
+<!-- ajax form post -->
+<script language="JavaScript">
+
+    $(document).ready(function() {
+        $('#comment_form').submit(function() {
+            $.ajax({
+
+                data: { 
+                  'content' : $('#content').val(), 
+                  'post' : $('#post').val(),
+                },
+
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+
+                success: function(response) {
+                    $('#post_a_comment').html('<p class="ok">Thank you for posting</p>');
+
+                },
+
+                error: function(response) {
+                    $('#post_a_comment').html('<p class="err">Your form contains errors</p>');
+                }
+
+
+
+            });
+            return false;
+        });
+    });
+</script>
+
 {% endblock %}
 
 {% block title %} {{ current.title}} - on Postato {% endblock %}
@@ -17,7 +50,7 @@
 {% block content %}
 <div id="current"> 
       <div class="spacer"></div>  
-      <div id="post">
+      <div id="post_space">
 
       	{% if current %}
         <p class="title"> {{ current.title|upper }} </p>
@@ -50,17 +83,18 @@
         	{% endfor %}
         {% else %}
 
-        <a href="" onclick="expand(); return false;" class="expand">Be the first to leave a comment {%if not user.is_authenticated %}(login required){% endif %}</a>
+        <a href="" class="expand">Be the first to leave a comment {%if not user.is_authenticated %}(login required){% endif %}</a>
         <div class="sub_comments" style="display: none;">
         {% endif %}
 
         <!-- comment form -->
         {% if user.is_authenticated %}
         <div id="post_a_comment">
-          <form action="{% url blog.views.new_comment %}" method="POST">
-            {% csrf_token %}
-        	<textarea tid="content" placeholder="Insert your comment..."></textarea>
-        	<input type="submit" onclick="submitComment(); return false;" value="COMMENT">       
+          <form action="{% url blog.views.new_comment %}" method="POST" id="comment_form">{% csrf_token %}
+        	
+            <textarea id="content" placeholder="Insert your comment..."></textarea>
+            <input id="post" type="hidden" value="{{ current.id }}" />
+        	<input type="submit" value="COMMENT">       
           </form>
         </div>
         {% endif %}

@@ -10,8 +10,8 @@
 	#FFFFE0 (comments background, puky yellow)
 
 */
-
-* { font-family:"Arial Verdana", Arial, sans-serif; }
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+* { font-family:"Ubuntu", Tahoma,sans-serif; }
 body { background-color: #7F7F7F; }
 
 /* Container (duh?) */
@@ -26,7 +26,6 @@ body { background-color: #7F7F7F; }
 
 /* Top bar - blog title */
 #postatobar{
-	font-family:"cursive", cursive, sans-serif;
 	text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
 	height:80px;
 	font-size: 45px; 
@@ -38,7 +37,6 @@ body { background-color: #7F7F7F; }
 }
 
 #postatobar span.posta {
-	font-family:"cursive", cursive, sans-serif;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	color:#B4F257;
 }
@@ -82,7 +80,7 @@ body { background-color: #7F7F7F; }
 }
 
 /* The post */
-#main #current #post{
+#main #current #post_space{
 	border: 2px solid #000;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -93,7 +91,7 @@ body { background-color: #7F7F7F; }
 	display: block;
 }
 
-#main #current #post p.title {
+#main #current #post_space p.title {
 	width: auto;
 	display: block;
 	text-align: center;
@@ -102,7 +100,7 @@ body { background-color: #7F7F7F; }
 	
 }
 
-#main #current #post p.content {
+#main #current #post_space p.content {
 	width: auto;
 	display: block;
 	text-align: left;
@@ -111,7 +109,7 @@ body { background-color: #7F7F7F; }
 }
 
 
-#main #current #post p.author {
+#main #current #post_space p.author {
 	width: auto;
 	display: block;
 	text-align: right;
@@ -119,7 +117,7 @@ body { background-color: #7F7F7F; }
 	font-weight: bold;
 }
 
-#main #current #post div.extras {
+#main #current #post_space div.extras {
 	width: auto;
 	display: block;
 	text-align: right;
@@ -127,13 +125,13 @@ body { background-color: #7F7F7F; }
 	font-weight: bold;
 }
 
-#main #current #post div.extras a.promote {text-decoration: none; color: #000;}
-#main #current #post div.extras a.promote:hover {text-decoration: none; color: green;}
-#main #current #post div.extras span.promote {color: green;}
+#main #current #post_space div.extras a.promote {text-decoration: none; color: #000;}
+#main #current #post_space div.extras a.promote:hover {text-decoration: none; color: green;}
+#main #current #post_space div.extras span.promote {color: green;}
 
-#main #current #post div.extras a.demote {text-decoration: none; color: #000;}
-#main #current #post div.extras a.demote:hover {text-decoration: none; color: red;}
-#main #current #post div.extras span.demote {color: red;}
+#main #current #post_space div.extras a.demote {text-decoration: none; color: #000;}
+#main #current #post_space div.extras a.demote:hover {text-decoration: none; color: red;}
+#main #current #post_space div.extras span.demote {color: red;}
 
 /* The comments */
 #main #current #comments {
@@ -153,6 +151,9 @@ body { background-color: #7F7F7F; }
 	text-align: center;
 	display: block;
 }
+
+#main #current #comments #post_a_comment p.ok{ color: green; }
+#main #current #comments #post_a_comment p.err{ color: red; }
 
 #main #current #comments #post_a_comment form { margin: auto; }
 #main #current #comments a.expand { 
@@ -207,8 +208,8 @@ body { background-color: #7F7F7F; }
 	padding: 20px 0px 0px 0px;
 }
 
-.good { background-color: lightgreen; }
-.bad { background-color: orange; }
+.good { background-color: green; }
+.bad { background-color: red; }
 .meh { background-color: yellow; }
 
 #history div.listitem div.title {
@@ -282,7 +283,6 @@ div.spacer{clear:both; height:25px; display:block;}
 
 /* Footer elements */
 #footer{
-	font-family:"cursive", cursive, sans-serif;
 	text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
 	text-align: center;
 	font-size: 25px;	

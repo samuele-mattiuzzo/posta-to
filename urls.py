@@ -17,7 +17,7 @@ urlpatterns = patterns('',
 
     ## post related pages ##
     ('^posts/$', 'blog.views.view_posts'),
-    ('^posts/(?P<id>\d+)/$', 'blog.views.view_posts'),
+    ('^posts/(?P<id>\d+)/$', 'blog.views.view_post'),
     ('^posts/new/$', 'blog.views.new_post'),
 
     ## ajax views ##

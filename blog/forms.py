@@ -22,7 +22,7 @@ class PostForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
 	class Meta:
 		model = Comment
-		exclude = ('user', 'post', )
+		exclude = ('user', )
 
 	def save(self, user, content, post, commit = True):
 		comment = super(CommentForm, self).save(commit = False)
