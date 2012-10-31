@@ -1,0 +1,29 @@
+<!-- comments block -->
+{% if coms %}
+
+	<p id="comments_status_msg" class="{{ class }}">{{ msg }}</p>
+
+    <a href="" onclick="expander(); return false;" class="expand">Expand {{ coms.count }} comments</a>
+    <div class="sub_comments" style="display: none;">
+    {% for c in coms %}
+    	<div class="comment"><span class="user">{{ c.user }} said:</span><span class="text"> {{ c.content }}</span></div>
+    {% endfor %}
+
+{% else %}
+		<a href="" onclick="expander(); return false;" class="expand">Be the first to leave a comment {%if not user.is_authenticated %}(login required){% endif %}</a>
+    	<div class="sub_comments" style="display: none;">
+{% endif %}
+<!-- end of the comments block -->
+
+<!-- comment form -->
+{% if user.is_authenticated %}
+<div id="post_a_comment">
+	<form action="{% url blog.views.new_comment %}" method="POST" id="comment_form">{% csrf_token %}
+        <textarea id="content" placeholder="Insert your comment..."></textarea>
+		<input id="post" type="hidden" value="{{ current.id }}" />
+        <input type="submit" value="COMMENT">       
+    </form>
+</div>
+{% endif %}
+
+</div>

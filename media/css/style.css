@@ -152,8 +152,8 @@ body { background-color: #7F7F7F; }
 	display: block;
 }
 
-#main #current #comments #post_a_comment p.ok{ color: green; }
-#main #current #comments #post_a_comment p.err{ color: red; }
+p.ok{ color: green; }
+p.err{ color: red; }
 
 #main #current #comments #post_a_comment form { margin: auto; }
 #main #current #comments a.expand { 

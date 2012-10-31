@@ -15,14 +15,21 @@ urlpatterns = patterns('',
     ('^login/$', 'django.contrib.auth.views.login'),
     ('^logout/$', 'django.contrib.auth.views.logout'),
 
+    ## stats related pages ##
+    #('^users/(?P<id>\d+)/profile-page$', 'stats.views.profile_page'),
+    #('^users/(?P<id>\d+)/charts$', 'stats.views.charts'),
+    #('^blog/stats/$', 'stats.views.blog_stats'),
+
     ## post related pages ##
     ('^posts/$', 'blog.views.view_posts'),
     ('^posts/(?P<id>\d+)/$', 'blog.views.view_post'),
     ('^posts/new/$', 'blog.views.new_post'),
+    ('^posts/delete/(?P<id>\d+)/$', 'blog.views.delete_post'),
 
-    ## ajax views ##
+    ## comment related urls (ajax) ##
     ('^comment/new/$', 'blog.views.new_comment'),
-    #('^posts/(?P<id>\d+)/promote/$', 'blog.views.promote_post'),
-    #('^posts/(?P<id>\d+)/demote/$', 'blog.views.demote_post'),
+    #('^comment/delete/(?P<id>\d+)/$', 'blog.views.delete_comment'),
+    ('^vote/(?P<id>\d+)/(?P<vote>\w+)/$', 'blog.views.vote_post'),
+    #('^signup/$', 'blog.ajax.signup_user'),
 
 )

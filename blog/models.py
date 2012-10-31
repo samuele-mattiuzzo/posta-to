@@ -31,11 +31,13 @@ class Post(models.Model):
 		else:
 			return 'meh'
 
-	def up_vote(self):
+	def plus_vote(self):
 		self.plus_votes += 1.0
+		return self.plus_votes
 
 	def down_vote(self):
 		self.down_votes += 1.0
+		return self.down_votes
 
 
 class Comment(models.Model):

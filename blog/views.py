@@ -37,6 +37,16 @@ def view_post(request, id=None):
 		context_instance=RequestContext(request)
 	)
 
+def view_comments(request, id):
+	coms = Comment.objects.filter(post=current)
+
+	return render_to_response(
+		'posts.html',
+		locals(), 
+		context_instance=RequestContext(request)
+	)
+
+
 ## login-based views ##
 
 @login_required
@@ -61,8 +71,22 @@ def new_post(request):
 	)
 
 @login_required
+def delete_post(request, id):
+	post = Post.objects.get(id=id)
+	Post.objects.get(id=id).delete()
+	Comment.objects.filter(post=id).delete()
+	return render_to_response(
+		'post_deleted.html',
+		locals(),
+		context_instance=RequestContext(request)
+	)
+
+
+
+@login_required
 def new_comment(request):
-	post_msg = ""
+	comments = None
+	status = "err"
 	form = CommentForm()
 
 	if request.is_ajax():
@@ -73,13 +97,19 @@ def new_comment(request):
 			content = form.cleaned_data['content']
 			p = form.cleaned_data['post']
 			post = Post.objects.get(id=p.id)
+			comments = Comment.objects.filter(post=post)
 
-			comment = form.save(request.user, content, post)
+			if len(comments) < 15:
+				comment = form.save(request.user, content, post)
 
-			if comment:
-				msg = "Thank you for your comment!"
+				if comment:
+					comments = Comment.objects.filter(post=post)
+					msg = "Thank you for your comment!"
+					status = "ok"
+				else:
+					msg = "Couldn't post your message. Try again later."
 			else:
-				msg = "Couldn't post your message. Try again later."
+				msg = "Sorry, post limit reached"
 
 		else:
 			msg = "Your form contains errors: " + str(form.errors)
@@ -88,5 +118,30 @@ def new_comment(request):
 	else:
 		msg = "Don't even think about it..."
 
-	return HttpResponse(msg)
+	return render_to_response(
+		'comments.html', 
+		{'coms' : comments, 'msg' : msg, 'class' : status },
+		context_instance=RequestContext(request)
+	)
+
+@login_required
+def vote_post(request, id, vote):
+
+	n = 0.0
+
+	if request.is_ajax():
+
+		post = Post.objects.get(id=int(id))
+
+		if vote == 'plus':
+			n = post.plus_vote()
+
+		elif vote == 'down':
+			n = post.down_vote()
+
+		post.save()
+
+	return HttpResponse(int(n))
+
+
 

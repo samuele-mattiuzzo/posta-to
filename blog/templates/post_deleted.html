@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %} Deleted post {{ post.id }} - on Postato {% endblock %}
+
+{% block content %}
+<div id="current"> 
+      <div class="spacer"></div>  
+      <div id="post_space">
+      	<p class="title">Congratulations! You just deleted post {{ post.id }}:
+
+      		<p><strong>{{ post.title|truncatewords:10 }}</strong></p>
+      		<p>{{ post.content|truncatewords:10 }}</p>
+      </div>
+</div>
+{% endblock %}
