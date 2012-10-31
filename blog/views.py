@@ -7,17 +7,15 @@ from django.core.urlresolvers import reverse
 from forms import PostForm, CommentForm
 from models import Post, Comment
 
+from random import choice
+
 ## base views ##
 
-def view_posts(request, id=None):
+def view_posts(request):
 	posts = Post.objects.all().order_by('-date')
-	
-	if len(posts) > 0:
-		current = Post.objects.get(id=posts[0].id)
-		coms = Comment.objects.filter(post=posts[0])
-	else:
-		current = None
-		coms = None
+	current = Post.objects.get(id=posts[0].id)
+	coms = Comment.objects.filter(post=posts[0])
+	next_random = choice(posts)
 
 	return render_to_response(
 		'posts.html',
@@ -25,11 +23,11 @@ def view_posts(request, id=None):
 		context_instance=RequestContext(request)
 	)
 
-def view_post(request, id=None):
-	if id is not None:
-		posts = Post.objects.exclude(id=int(id)).order_by('-date')
-		current = Post.objects.get(id=int(id))
-		coms = Comment.objects.filter(post=current)
+def view_post(request, id):
+	posts = Post.objects.exclude(id=id).order_by('-date')
+	current = Post.objects.get(id=id)
+	coms = Comment.objects.filter(post=current)
+	next_random = choice(posts)
 
 	return render_to_response(
 		'posts.html',
@@ -74,6 +72,7 @@ def new_post(request):
 def delete_post(request, id):
 	post = Post.objects.get(id=id)
 	Post.objects.get(id=id).delete()
+	next_random = Post.objects.order_by('?')[0]
 	Comment.objects.filter(post=id).delete()
 	return render_to_response(
 		'post_deleted.html',
@@ -82,7 +81,7 @@ def delete_post(request, id):
 	)
 
 
-
+## move to an ajax view file maybe? ##
 @login_required
 def new_comment(request):
 	comments = None
@@ -131,7 +130,7 @@ def vote_post(request, id, vote):
 
 	if request.is_ajax():
 
-		post = Post.objects.get(id=int(id))
+		post = Post.objects.get(id=id)
 
 		if vote == 'plus':
 			n = post.plus_vote()

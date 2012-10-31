@@ -37,7 +37,15 @@
   </div>
 
   <div id="main">
-    
+
+
+    {% if next_random %}
+    <div id="post_nav_bar">
+      <a href=""><--</a>
+      <a href="/posts/{{ next_random.id }}/">RANDOM</a>
+      <a href="">--></a>
+    </div>
+    {% endif %}
     {% block content %}
     {% endblock %}
 

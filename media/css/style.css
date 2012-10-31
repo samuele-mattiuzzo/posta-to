@@ -71,6 +71,28 @@ body { background-color: #7F7F7F; }
 /* Main div */
 #main{ width:auto; display:block; margin-left: 5px;}
 
+
+/* post nav bar */
+#main #post_nav_bar{
+	background-color: #404040;
+	color: #FFF;
+	border: 1px solid #000;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	height: 20px;
+	float:left;
+}
+
+#main #post_nav_bar a {
+	width: 330px;
+	display: block;
+	float: left;
+	text-align: center;
+	text-decoration: none;
+	color: #FFF;
+}
+#main #post_nav_bar a:hover { text-decoration: none; color: #B4F257; }
+
 /* Currently selected post */
 #main #current{
 	width:760px;

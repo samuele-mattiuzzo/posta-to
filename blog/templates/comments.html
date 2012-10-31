@@ -3,7 +3,7 @@
 
 	<p id="comments_status_msg" class="{{ class }}">{{ msg }}</p>
 
-    <a href="" onclick="expander(); return false;" class="expand">Expand {{ coms.count }} comments</a>
+    <a href="" onclick="expander(); return false;" class="expand">{{ coms.count }} comment{% if coms.count > 1 %}s{% endif %}</a>
     <div class="sub_comments" style="display: none;">
     {% for c in coms %}
     	<div class="comment"><span class="user">{{ c.user }} said:</span><span class="text"> {{ c.content }}</span></div>
