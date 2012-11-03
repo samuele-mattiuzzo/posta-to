@@ -1,11 +1,13 @@
 {% extends "base.html" %}
+{% load filetransfers %}
 
 {% block content %}
 <div id="current"> 
     <div class="spacer"></div>  
     <div id="post_space">
-    <form action="{% url blog.views.new_post %}" method="post" accept-charset="utf-8">
+    <form action="{% url blog.views.new_post %}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
         {% csrf_token %}
+        {% render_upload_data upload_data %}
         {{ form.as_p }}
         <p><input type="submit" value="Post!"/></p>
     </form>

@@ -119,21 +119,33 @@ body { background-color: #7F7F7F; }
 	text-align: center;
 	font-size: 25px;
 	font-weight: bold;
+
 	
 }
 
 #main #current #post_space p.content {
-	width: auto;
+	width: 95%;
 	display: block;
 	text-align: left;
 	font-size: 14px;
+	margin: auto;
+	
+}
+
+#main #current #post_space img.post_image {
+	width: 95%;
+	border: 5px dashed #404040;
+	display: block;
+	margin: 10px auto;
+	padding: auto;
 	
 }
 
 
 #main #current #post_space p.author {
-	width: auto;
+	width: 95%;
 	display: block;
+	margin: 5px auto;
 	text-align: right;
 	font-size: 12px;
 	font-weight: bold;
@@ -160,7 +172,7 @@ body { background-color: #7F7F7F; }
 	border: 2px solid #000;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	background-color: #FFFFE0;
+	background-color: #404040;
 	width: 95%;
 	margin: auto;
 	display: block;
@@ -185,17 +197,17 @@ p.err{ color: red; }
 	text-align: center;
 	font-size: 14px;
 	text-decoration: none;
-	color: #000;
+	color: #fff;
 	padding: 5px;
 }
 
 #main #current #comments a.expand:hover { 
-	background-color: #404040;
+	background-color: #4A4A4A;
 	color: #B4F257;
 }
 
 #main #current #comments div.comment {
-	background-color: #FFFFE0;
+	background-color: #4A4A4A;
 	border-bottom: 1px solid #000;
 	padding: 15px;
 }
@@ -203,10 +215,12 @@ p.err{ color: red; }
 #main #current #comments div.comment span.user {
 	font-weight: bold;
 	font-size: 12px;
+	color: #B4F257;
 }
 
 #main #current #comments div.comment span.text {
 	font-size: 12px;
+	color: #fff;
 }
 
 /* History items */
@@ -240,9 +254,10 @@ p.err{ color: red; }
 	background-color: #FFF;
 	margin: 0 auto;
 	border-top: 1px solid #000;
+	
 }
 
-#history div.listitem div.title a {text-decoration: none; color: #000;}
+#history div.listitem div.title a {text-decoration: none; color: #000;  }
 #history div.listitem div.title a:hover {text-decoration: none; color: red;}
 
 #history div.listitem div.commentcount {
@@ -334,16 +349,19 @@ display: block;
 -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+background-color: #B7B7B7;
 }
 
 textarea   {
 border: 1px solid #999;
 width:500px;
-height: 80px;
+height: 40px;
 display: block;
 -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+background-color: #B7B7B7;
+color: #000;
 }
 
 textarea.message { display: block; }

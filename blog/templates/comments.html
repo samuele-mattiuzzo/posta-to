@@ -6,7 +6,7 @@
     <a href="" onclick="expander(); return false;" class="expand">{{ coms.count }} comment{% if coms.count > 1 %}s{% endif %}</a>
     <div class="sub_comments" style="display: none;">
     {% for c in coms %}
-    	<div class="comment"><span class="user">{{ c.user }} said:</span><span class="text"> {{ c.content }}</span></div>
+    	<div class="comment"><span class="user">[ {{ c.date|date:"d M Y"  }} ] #{{ c.user }} said:</span><span class="text"> {{ c.content }}</span></div>
     {% endfor %}
 
 {% else %}
@@ -18,7 +18,7 @@
 <!-- comment form -->
 {% if user.is_authenticated %}
 <div id="post_a_comment">
-	<form action="{% url blog.views.new_comment %}" method="POST" id="comment_form">{% csrf_token %}
+	<form action="{% url blog.ajax.new_comment %}" method="POST" id="comment_form">{% csrf_token %}
         <textarea id="content" placeholder="Insert your comment..."></textarea>
 		<input id="post" type="hidden" value="{{ current.id }}" />
         <input type="submit" value="COMMENT">       

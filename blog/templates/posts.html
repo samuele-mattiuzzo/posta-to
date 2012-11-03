@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load filetransfers %}
+{% load render_pictures %}
 
 {% block page_scripts %}
 
@@ -38,21 +40,26 @@
 
 {% endblock %}
 
-{% block title %} {{ current.title}} - on Postato {% endblock %}
+{% block title %} #{{ current.id }} {{ current.title }} - on Postato {% endblock %}
 
 {% block content %}
 <div id="current"> 
       <div class="spacer"></div>  
       <div id="post_space">
 
+        <!-- post -->
       	{% if current %}
         <p class="title"> {{ current.title|upper }} </p>
-        <p class="content">
-        	{{ current.content }}
-        </p>
+
+          {% if current.image %}
+            {% url blog.views.download_handler id=current.id as image_url %}
+            <img class="post_image" src="{{ image_url }}" alt="{{ current.title }}" />
+          {% endif %}
+
+        <p class="content">{{ current.content }} </p>
         <p class="author">{{ current.user.username }}</p>
         
-        
+        <!-- votes and delete -->
         <div class="extras">
           {% if user.is_authenticated %}
             {% ifequal current.user.id user.id %}
@@ -71,7 +78,6 @@
 
       <!-- comments -->
       <div id="comments">
-        <!-- used for ajax calls -->
         {% include "comments.html" %}
       </div>
 
@@ -83,7 +89,9 @@
 	{% if posts %}
 	{% for post in posts %}
 	<div class="listitem {{ post.get_rating }}">
-        <div class="title"><a href="/posts/{{ post.id }}/">{{ post.title|truncatewords:5 }}</a></div>
+        <!-- add templatetag to spam background image -->
+        {% url blog.views.download_handler id=post.image.id as image_url %}
+        <div class="title"  style="background-image: url('{% get_resized_image post.image.file 100 %}');"><a href="/posts/{{ post.id }}/">#{{ post.id }}</a></div>
         <div class="commentcount">
           {{ post.date|date:"d M Y"  }}
         </div>

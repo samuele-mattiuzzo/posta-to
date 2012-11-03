@@ -16,9 +16,9 @@ urlpatterns = patterns('',
     ('^logout/$', 'django.contrib.auth.views.logout'),
 
     ## stats related pages ##
-    #('^users/(?P<id>\d+)/profile-page$', 'stats.views.profile_page'),
-    #('^users/(?P<id>\d+)/charts$', 'stats.views.charts'),
-    #('^blog/stats/$', 'stats.views.blog_stats'),
+    #('^users/(?P<id>\d+)/#(?P<user>\w+)$', 'users.views.profile'),
+    #('^users/(?P<id>\d+)/#(?P<user>\w+)/charts/$', 'users.views.charts'),
+    #('^users/signup/$', 'users.views.signup'),
 
     ## post related pages ##
     ('^posts/$', 'blog.views.view_posts'),
@@ -26,10 +26,11 @@ urlpatterns = patterns('',
     ('^posts/new/$', 'blog.views.new_post'),
     ('^posts/delete/(?P<id>\d+)/$', 'blog.views.delete_post'),
 
+    ## image serving ##
+    ('^posts/download/(?P<id>\d+)/$', 'blog.views.download_handler'),
+
     ## comment related urls (ajax) ##
-    ('^comment/new/$', 'blog.views.new_comment'),
-    #('^comment/delete/(?P<id>\d+)/$', 'blog.views.delete_comment'),
-    ('^vote/(?P<id>\d+)/(?P<vote>\w+)/$', 'blog.views.vote_post'),
-    #('^signup/$', 'blog.ajax.signup_user'),
+    ('^comment/new/$', 'blog.ajax.new_comment'),
+    ('^vote/(?P<id>\d+)/(?P<vote>\w+)/$', 'blog.ajax.vote_post'),
 
 )

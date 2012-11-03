@@ -1,8 +1,12 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
+
+## custom libs import ##
+from filetransfers.api import prepare_upload, serve_file
+from google.appengine.api import images
 
 from forms import PostForm, CommentForm
 from models import Post, Comment
@@ -12,10 +16,14 @@ from random import choice
 ## base views ##
 
 def view_posts(request):
+	'''
+		All posts ordered by date
+	'''
 	posts = Post.objects.all().order_by('-date')
-	current = Post.objects.get(id=posts[0].id)
-	coms = Comment.objects.filter(post=posts[0])
-	next_random = choice(posts)
+	if len(posts):
+		current = Post.objects.get(id=posts[0].id)
+		coms = Comment.objects.filter(post=posts[0])
+		next_random = choice(posts)
 
 	return render_to_response(
 		'posts.html',
@@ -24,10 +32,15 @@ def view_posts(request):
 	)
 
 def view_post(request, id):
+	'''
+		Single post (id)
+		Separated from view_posts(request) because of possible extensions
+	'''
 	posts = Post.objects.exclude(id=id).order_by('-date')
 	current = Post.objects.get(id=id)
-	coms = Comment.objects.filter(post=current)
-	next_random = choice(posts)
+	if len(posts):
+		coms = Comment.objects.filter(post=current)
+		next_random = choice(posts)
 
 	return render_to_response(
 		'posts.html',
@@ -36,8 +49,10 @@ def view_post(request, id):
 	)
 
 def view_comments(request, id):
+	'''
+		Lists all comments for a single post
+	'''
 	coms = Comment.objects.filter(post=current)
-
 	return render_to_response(
 		'posts.html',
 		locals(), 
@@ -46,22 +61,29 @@ def view_comments(request, id):
 
 
 ## login-based views ##
+def download_handler(request, id):
+	'''
+		Serves the image file
+	'''
+	upload = get_object_or_404(Post, id=id) 
+	return serve_file(request, upload.image, save_as=True)
 
 @login_required
 def new_post(request):
+	'''
+		Creates a new post with image
+	'''
 	form = PostForm()
+	view_url = reverse('blog.views.new_post')
+	upload_url, upload_data = prepare_upload(request, view_url)
 
 	if request.method == 'POST':
-
-		form = PostForm(request.POST)
+		form = PostForm(request.POST, request.FILES)
 		if form.is_valid():
-
-			title = form.cleaned_data['title']
-			content = form.cleaned_data['content']
-			post = form.save(request.user, title, content)
-
+			## need to add image resizing when uploading, templatetag generates too much overhead
+			post = form.save(user=request.user)
 			return HttpResponseRedirect('/posts/%d/' % post.id)
-
+	
 	return render_to_response(
 		'new_post.html',
 		locals(), 
@@ -70,10 +92,18 @@ def new_post(request):
 
 @login_required
 def delete_post(request, id):
+	'''
+		Deletes a post, handles comments and images deletion
+	'''
 	post = Post.objects.get(id=id)
+	post.image.delete()
 	Post.objects.get(id=id).delete()
-	next_random = Post.objects.order_by('?')[0]
 	Comment.objects.filter(post=id).delete()
+
+	posts = Posts.objects.all()
+	if len(posts):
+		next_random = choice(Post.objects.all())
+		
 	return render_to_response(
 		'post_deleted.html',
 		locals(),
@@ -81,66 +111,7 @@ def delete_post(request, id):
 	)
 
 
-## move to an ajax view file maybe? ##
-@login_required
-def new_comment(request):
-	comments = None
-	status = "err"
-	form = CommentForm()
 
-	if request.is_ajax():
-	
-		form = CommentForm(request.POST)
-		if form.is_valid():
-
-			content = form.cleaned_data['content']
-			p = form.cleaned_data['post']
-			post = Post.objects.get(id=p.id)
-			comments = Comment.objects.filter(post=post)
-
-			if len(comments) < 15:
-				comment = form.save(request.user, content, post)
-
-				if comment:
-					comments = Comment.objects.filter(post=post)
-					msg = "Thank you for your comment!"
-					status = "ok"
-				else:
-					msg = "Couldn't post your message. Try again later."
-			else:
-				msg = "Sorry, post limit reached"
-
-		else:
-			msg = "Your form contains errors: " + str(form.errors)
-
-
-	else:
-		msg = "Don't even think about it..."
-
-	return render_to_response(
-		'comments.html', 
-		{'coms' : comments, 'msg' : msg, 'class' : status },
-		context_instance=RequestContext(request)
-	)
-
-@login_required
-def vote_post(request, id, vote):
-
-	n = 0.0
-
-	if request.is_ajax():
-
-		post = Post.objects.get(id=id)
-
-		if vote == 'plus':
-			n = post.plus_vote()
-
-		elif vote == 'down':
-			n = post.down_vote()
-
-		post.save()
-
-	return HttpResponse(int(n))
 
 
 

@@ -27,6 +27,7 @@ FOLDERS = [
 	("djangotoolbox/djangotoolbox", "djangotoolbox"),
 	("django-autoload/autoload", "autoload"),
 	("django-dbindexer/dbindexer", "dbindexer"),
+	("django-filetransfers/filetransfers", "filetransfers"),
 ]
 
 ## Repositories (with type associated)
@@ -36,7 +37,7 @@ REPOS = [
 	("git", "https://github.com/django-nonrel/djangotoolbox.git"),
 	("hg", "https://bitbucket.org/twanschik/django-autoload"),
 	("git", "https://github.com/django-nonrel/django-dbindexer.git"),
-	#("git", "https://github.com/django-nonrel/django-testapp.git") # official test application
+	("hg", "https://bitbucket.org/wkornewald/django-filetransfers"),
 ]
 
 def main():

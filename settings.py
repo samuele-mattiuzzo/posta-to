@@ -17,11 +17,12 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.sessions',
+
     'djangotoolbox',
     'autoload',
     'dbindexer',
+    'filetransfers',    
     'blog',
-    #'posta-to.adminpanel',
 
     # djangoappengine should come last, so it can override a few manage.py commands
     'djangoappengine',
@@ -30,7 +31,6 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     # This loads the index definitions, so it has to come first
     'autoload.middleware.AutoloadMiddleware',
-
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -47,10 +47,15 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 TEST_RUNNER = 'djangotoolbox.test.CapturingTestSuiteRunner'
 
 ADMIN_MEDIA_PREFIX = '/media/admin/'
+
 TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), 'templates'),)
+MEDIA_ROOT = (os.path.join(os.path.dirname(__file__), 'media'),)
 
 ROOT_URLCONF = 'urls'
 
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 LOGIN_REDIRECT_URL = '/'
+
+
+
