@@ -3,14 +3,14 @@
 
 	<p id="comments_status_msg" class="{{ class }}">{{ msg }}</p>
 
-    <a href="" onclick="expander(); return false;" class="expand">{{ coms.count }} comment{% if coms.count > 1 %}s{% endif %}</a>
+    <a href="" onclick="expander('.sub_comments'); return false;" class="expand">{{ coms.count }} comment{% if coms.count > 1 %}s{% endif %}</a>
     <div class="sub_comments" style="display: none;">
     {% for c in coms %}
     	<div class="comment"><span class="user">[ {{ c.date|date:"d M Y"  }} ] #{{ c.user }} said:</span><span class="text"> {{ c.content }}</span></div>
     {% endfor %}
 
 {% else %}
-		<a href="" onclick="expander(); return false;" class="expand">Be the first to leave a comment {%if not user.is_authenticated %}(login required){% endif %}</a>
+		<a href="" onclick="expander('.sub_comments'); return false;" class="expand">Be the first to leave a comment {%if not user.is_authenticated %}(login required){% endif %}</a>
     	<div class="sub_comments" style="display: none;">
 {% endif %}
 <!-- end of the comments block -->

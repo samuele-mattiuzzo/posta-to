@@ -52,12 +52,9 @@
     <!-- menu column -->
     <div class="menu"> 
       <ul>
-        <li><a href="https://github.com/samuele-mattiuzzo/posta-to" target="_blank">GITHUB</a></li>
-        <li class="last"><a href="/about/">ABOUT</a></li>
-      </div>
-    <div class="menu"> 
-      <ul>
           <li><a href="/">HOME</a></li>
+          <li><a href="/top/#users">TOP USERS</a></li>
+          <li><a href="/top/#posts">TOP POSTS</a></li>
 
         {% if user.is_authenticated %}
           <li><a href="/logout/">LOGOUT</a></li>
@@ -66,6 +63,7 @@
         {% else %}
           <li class="last"><a href="/login/">LOGIN</a></li>
         {% endif %}
+      </ul>
 
       </div>
     
@@ -82,7 +80,10 @@
 
   <div class="spacer"></div>
   <div id="footer">
-    <a href="mailto:samumatt@gmail.com">Samuele Mattiuzzo</a> &copy; 2012
+    
+    <a href="https://github.com/samuele-mattiuzzo/posta-to" target="_blank">GitHub</a> -
+    <a href="/about/">About</a> -
+    <a href="mailto:samumatt@gmail.com">Samuele Mattiuzzo</a> &copy; 2012 
   </div>
 <!-- close #container -->
 </div>

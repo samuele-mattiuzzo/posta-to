@@ -151,6 +151,18 @@ body { background-color: #7F7F7F; }
 	font-weight: bold;
 }
 
+#main #current #post_space ul {
+	width: auto;
+	display: block;
+	text-align: center;
+	font-size: 14px;
+	list-style-type: none;
+	text-align: center;
+}
+
+#main #current #post_space ul li { width: 95%;}
+
+
 #main #current #post_space div.extras {
 	width: auto;
 	display: block;

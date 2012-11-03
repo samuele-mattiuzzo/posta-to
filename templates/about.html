@@ -3,44 +3,58 @@
 
 {% block content %}
 <div id="current">
+	
 	<div class="spacer"></div>
+
 	<div id="post_space">
-<h1>It works!</h1>
-<p>
-Your Django-nonrel installation is working fine. Now go and build something useful with it. :)
-</p>
+		<p class="title" id="top">About page</h1>
+			<ul>
+				<li><a href="#posta-to">what is potato?</a></li>
+				<li><a href="#does">what does it do?</a></li>
+				<li><a href="#does-not">what doesn't (yet)?</a></li>
+				<li><a href="#to-do">what is planned?</a></li>
+			</ul>
 
-<p>
-If you'd like to learn more about using Django-nonrel take a look at the <a href="http://readthedocs.org/docs/django-nonrel">documentation</a>.
-You may also want to follow the <a href="https://github.com/django-nonrel">project on GitHub</a> or subscribe to its <a href="https://groups.google.com/group/django-non-relational">google group</a> so you don't miss any new features and improvements.
-</p>
+		<!-- what is potato? -->
+		<p class="title" id="posta-to">What is Posta-to?</h1>
+		<p class="content">Posta-to is a simple blogging application designed specifically for comic stripes and short messages as well. 
+		It's based on <a href="http://www.allbuttonspressed.com/projects/djangoappengine">djangoappengine</a> and uses <a href="http://www.allbuttonspressed.com/projects/django-filetransfers">django-filetransfers</a> for image uploading.</p>
+		<p class="content">The project code is currently hosted on <a href="https://github.com/samuele-mattiuzzo/posta-to">GitHub</a> and it provides a <a href="https://github.com/samuele-mattiuzzo/posta-to/blob/master/srv/align_libs.py">script</a> that downloads all the required packages. See the <a href="https://github.com/samuele-mattiuzzo/posta-to/blob/master/README.md">README</a> file for further instructions.
 
-<p>
-If you're new to Django you should take a look at the <a href="http://docs.djangoproject.com/">Django documentation</a> and the <a href="http://www.djangobook.com/">Django book</a>.
-You'll also find <a href="http://djangosnippets.org/">djangosnippets</a> very useful.
-</p>
+		<!-- what does it do? -->
+		<p class="title" id="does">What does it do?</h1>
+			<ul>
+				<li>Login the admin user</li>
+				<li>Create a new post</li>
+				<li>Upload an image with a post</li>
+				<li>Upvote/downvote a post</li>
+				<li>Delete a post</li>
+				<li>Browse posts</li>
+			</ul>
+		</p>
 
-<p>
-If you have an existing Django project that you'd like to use with a non-relational back-end or would simply like to learn what are the differences between the normal Django and its non-relational version take a look at: <a href="http://readthedocs.org/docs/django-nonrel/en/latest/content/porting.html">porting</a>.
-</p>
+		<!-- what doesn't (yet)? -->
+		<p class="title" id="does-not">What doesn't?</h1>
+			<ul>
+				<li>Register a new user</li>
+				<li>View user profile</li>
+				<li>View user history</li>
+				<li>Delete an image</li>
+				<li>Resize image on upload</li>
+				<li>Share the posts</li>
+			</ul>
+		</p>
 
-<p>
-If you search for reusable apps that work with Django-nonrel here's a list to get you started:
-</p>
-
-<ul>
-  <li><a href="https://github.com/django-nonrel/django-dbindexer">django-dbindexer</a>: Emulates extra database features beyond its native API (filters like __iexact, __endswith and simple JOINs); those features are used by some Django modules (admin, auth)</li>
-  <li><a href="https://github.com/django-nonrel/django-permission-backend-nonrel">django-permission-backend-nonrel</a>: Authentication backend that works with non-relation databases</li>
-  <li><a href="https://github.com/django-nonrel/nonrel-search">nonrel-search</a>: A simple full-text search engine for App Engine and other non-relational DBs</li>
-  <li><a href="http://readthedocs.org/docs/django-nonrel/en/latest/content/django-mediagenerator%20asset%20manager.html">django-mediagenerator</a>: Combines and compresses your JS and CSS files</li>
-  <li><a href="http://readthedocs.org/docs/django-nonrel/en/latest/content/django-filetransfers%20-%20File%20upload-download%20abstraction.html">django-filetransfers</a>: Generic API for file uploads/downloads (e.g. via App Engine Blobstore)</li>
-  <li><a href="http://readthedocs.org/docs/django-nonrel/en/latest/content/All%20Buttons%20Pressed%20-%20CMS%20&amp;%20blog%20for%20Django-nonrel.html">allbuttonspressed</a>: The simple CMS/blog that powers the original <a href="http://www.allbuttonspressed.com">Django-nonrel website</a></li>
-  <li><a href="https://github.com/django-nonrel">...and other nonrel projects...</a></li>
-</ul>
-
-<p>
-Finally, take a look at the apps listed on <a href="http://djangopackages.com/">Django Packages</a>. Many simple Django apps (e.g., <a href="https://bitbucket.org/ubernostrum/django-registration">django-registration</a>) should work unmodified. If you want to use <a href="http://robhudson.github.com/django-debug-toolbar/">django-debug-toolbar</a> you need to disable the SQLDebugPanel in your settings.
-</p>
+		<!-- what is planned -->
+		<p class="title" id="to-do">What is planned?</h1>
+			<ul>
+				<li>User profiles and relative pages, with <a href="https://developers.google.com/chart/">googlecharts</a></li>
+				<li>Image uploading with resize (templatetag generates too overhead)</li>
+				<li>Auth with OpenID</li>
+				<li>Post sharing</li>
+				<li>New css colors (yeah)</li>
+			</ul>
+		</p>
 </div>
 </div>
 {% endblock %}

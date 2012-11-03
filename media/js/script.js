@@ -1,7 +1,7 @@
 
 /* expands the comments div */
-function expander(){
-    $(".sub_comments").toggle("fast");
+function expander(div){
+    $(div).toggle("fast");
     return false;
 }
 
