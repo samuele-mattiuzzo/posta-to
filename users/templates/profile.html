@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}{{ us.username }} profile page - on Postato{% endblock %}
+
+{% block content %}
+<div id="current">
+	
+	<div class="spacer"></div>
+
+	<div id="post_space">
+		<p class="content">
+			goto <a class="link" href="/users/{{ us.id }}/{{ us.username }}/charts/">/charts/</a>
+		</p>
+		<p class="title">{{ us.username }}'s profile page</p>
+		
+			<table>
+				<tr><th>ID</th><th>DATE REGISTEREd</th><th>POSTS</th>
+				<tr><td>{{ us.id }}</td><td>{{ us.date_joined|date:"d M Y" }}</td>
+					<td>{{ user_posts }}</td></tr>
+			</table>
+
+		<p class="title" id="users">Top posts</p>
+			<table>
+				<tr><th>ID</th><th>TTTLE</th><th>VOTES</th>
+				{% for u in posts %}
+				<tr><td>{{ u.id }}</td><td><a class="link" href="/posts/{{ u.id }}/">#{{ u.id }} {{ u.title }}</a></td><td>{{ u.plus_votes }} - {{ u.down_votes }}</td></tr>
+				{% endfor %}
+			</table>
+</div>
+</div>
+
+{% endblock %}

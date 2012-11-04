@@ -19,7 +19,7 @@
       <script type="text/javascript" src="/media/js/script.js"></script>
     {% endblock %}
 
-    {% block page_scripts %}{% endblock %}
+    
 
     {% block extra-head %}{% endblock %}
 
@@ -30,9 +30,14 @@
   </div>
   <div id="titlebar"> 
     {% if user.is_authenticated %}
-    Welcome to postato, <span class="logged">{{ user.username }}</span> 
+    Welcome to postato, 
+    <span class="logged">
+      <a href="/users/{{ user.id }}/{{ user.username }}" class="link">
+        {{ user.username }}
+      </a>
+    </span> 
     {% else %}
-    <span class="guest">Login in order to comment and rate posts</span>
+    <span class="guest"><a class="link" href="/login/">Login</a> or <a class="link"  href="/signup/">signup</a> in order to comment and rate posts</span>
     {% endif %}
   </div>
 
@@ -53,12 +58,10 @@
     <div class="menu"> 
       <ul>
           <li><a href="/">HOME</a></li>
-          <li><a href="/top/#users">TOP USERS</a></li>
-          <li><a href="/top/#posts">TOP POSTS</a></li>
+          <li><a href="/top/">RANKINGS</a></li>
 
         {% if user.is_authenticated %}
           <li><a href="/logout/">LOGOUT</a></li>
-          <!-- tbd <li><a href="/charts/">CHARTS</a></li> -->
           <li class="last"><a href="/posts/new/">NEW POST</a></li>
         {% else %}
           <li class="last"><a href="/login/">LOGIN</a></li>
@@ -66,9 +69,6 @@
       </ul>
 
       </div>
-    
-    
-
     <div class="spacer"></div>
   </div>
 
@@ -87,4 +87,5 @@
   </div>
 <!-- close #container -->
 </div>
+{% block page_scripts %}{% endblock %}
 </html>

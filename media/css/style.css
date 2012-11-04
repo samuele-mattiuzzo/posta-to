@@ -10,9 +10,15 @@
 	#FFFFE0 (comments background, puky yellow)
 
 */
+
+/* Generic */
 @import url(https://fonts.googleapis.com/css?family=Ubuntu);
 * { font-family:"Ubuntu", Tahoma,sans-serif; }
 body { background-color: #7F7F7F; }
+a.link { font-weight: bold; color: #B4F257; text-decoration: none;}
+a.link:hover { text-decoration: underline; }
+
+
 
 /* Container (duh?) */
 #container{
@@ -256,20 +262,23 @@ p.err{ color: red; }
 	padding: 20px 0px 0px 0px;
 }
 
-.good { background-color: green; }
-.bad { background-color: red; }
-.meh { background-color: yellow; }
+/* Backgrounds for history items based on ranking */
+.very_good { background-color: #BEF781;}
+.good { background-color: #D0F5A9; }
+.meh { background-color: #F2F5A9; }
+.bad { background-color: #F5BCA9; }
+.very_bad { background-color: #F78181;}
+
 
 #history div.listitem div.title {
-	width: auto;
+	width: 100%; 
 	height: 60px;
-	background-color: #FFF;
 	margin: 0 auto;
 	border-top: 1px solid #000;
 	
 }
 
-#history div.listitem div.title a {text-decoration: none; color: #000;  }
+#history div.listitem div.title a {text-decoration: none; color: #fff; background-color: #404040;  }
 #history div.listitem div.title a:hover {text-decoration: none; color: red;}
 
 #history div.listitem div.commentcount {
@@ -378,5 +387,20 @@ color: #000;
 
 textarea.message { display: block; }
 
+/* Table styles */
+table {
+	border-collapse:collapse;
+	width: 100%;
+}
 
+table,th, td {
+	border: 1px solid black;
+	text-align: center;
+	padding: 2px;
+}
+
+th {
+	background-color: #404040;
+	color: #fff;
+}
 

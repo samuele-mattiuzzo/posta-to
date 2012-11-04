@@ -16,15 +16,16 @@ urlpatterns = patterns('',
     ('^logout/$', 'django.contrib.auth.views.logout'),
 
     ## stats related pages ##
-    #('^users/(?P<id>\d+)/#(?P<user>\w+)$', 'users.views.profile'),
-    #('^users/(?P<id>\d+)/#(?P<user>\w+)/charts/$', 'users.views.charts'),
-    #('^users/signup/$', 'users.views.signup'),
+    ('^users/(?P<id>\d+)/(?P<username>\w+)$', 'users.views.profile'),
+    ('^users/(?P<id>\d+)/(?P<username>\w+)/charts/$', 'users.views.charts'),
+    ('^signup/$', 'users.views.signup'),
 
     ## post related pages ##
     ('^posts/$', 'blog.views.view_posts'),
     ('^posts/(?P<id>\d+)/$', 'blog.views.view_post'),
     ('^posts/new/$', 'blog.views.new_post'),
     ('^posts/delete/(?P<id>\d+)/$', 'blog.views.delete_post'),
+    ('^top/$', 'blog.views.view_top_ranked'),
 
     ## image serving ##
     ('^posts/download/(?P<id>\d+)/$', 'blog.views.download_handler'),

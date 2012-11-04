@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}User signup - on Postato{% endblock %}
+
+{% block content %}
+<div id="current"> 
+      <div class="spacer"></div>  
+      <div id="post_space">
+
+<p class="title">Insert your data to join Postato!</p>
+
+{% if form.errors %}
+	<p>Your username and password are invalid.</p>
+{% endif %}
+
+<form method="post" action="{% url users.views.signup %}">{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="login" />
+	<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+</div>
+</div>
+
+{% endblock %}

@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
 ## custom libs import ##
@@ -45,6 +46,19 @@ def view_post(request, id):
 	return render_to_response(
 		'posts.html',
 		locals(), 
+		context_instance=RequestContext(request)
+	)
+
+def view_top_ranked(request):
+	'''
+		Top 15 users and posts
+	'''
+	top_users = User.objects.all()[:15]
+	top_posts = Post.objects.all().order_by('-plus_votes')[:15]
+
+	return render_to_response(
+		'top.html',
+		locals(),
 		context_instance=RequestContext(request)
 	)
 
@@ -96,14 +110,13 @@ def delete_post(request, id):
 		Deletes a post, handles comments and images deletion
 	'''
 	post = Post.objects.get(id=id)
-	post.image.delete()
 	Post.objects.get(id=id).delete()
 	Comment.objects.filter(post=id).delete()
 
-	posts = Posts.objects.all()
+	posts = Post.objects.all()
 	if len(posts):
 		next_random = choice(Post.objects.all())
-		
+
 	return render_to_response(
 		'post_deleted.html',
 		locals(),

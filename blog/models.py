@@ -12,6 +12,7 @@ def uploadmodel_file_upload_to(instance, filename):
 class Post(models.Model):
 	'''
 		Base post class
+		Image can be null (text only post)
 	'''
 	user = models.ForeignKey(User)
 	image = models.FileField(upload_to=uploadmodel_file_upload_to, blank=True, null=True)
@@ -27,14 +28,15 @@ class Post(models.Model):
 			Used in templates, for now
 		'''
 
-		if self.plus_votes == 0 and self.down_votes == 0:
-			return ''
-
-		rate_up = self.plus_votes/(self.plus_votes+self.down_votes)
-		rate_down = self.down_votes/(self.plus_votes+self.down_votes)
+		rate_up = self.plus_votes/(self.plus_votes+self.down_votes) if self.plus_votes > 0.0 else 0.0
+		rate_down = self.down_votes/(self.plus_votes+self.down_votes) if self.down_votes > 0.0 else 0.0
 		
-		if rate_up > 0.7:
+		if rate_up > 0.8 and self.down_votes == 0.0:
+			return 'very_good'
+		elif rate_up > 0.7:
 			return 'good'
+		elif rate_down > 0.8 and self.plus_votes == 0.0:
+			return 'very_bad'
 		elif rate_down > 0.7:
 			return 'bad'
 		else:

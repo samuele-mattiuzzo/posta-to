@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block page_scripts %}
+<!-- google charts api -->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<!-- user reputation chart -->
+<script type="text/javascript">
+      google.load('visualization', '1.0', {'packages':['corechart']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Reputation');
+        data.addColumn('number', 'Value');
+        data.addRows([
+          ['Good', {{ good_rep }}],
+          ['Bad', {{ bad_rep }}]
+        ]);
+
+        var options = { 'width':748, 'height':300, 'colors': ['green','red'], 'is3D': true };
+
+        var chart = new google.visualization.PieChart(document.getElementById('reputation'));
+        chart.draw(data, options);
+      }
+</script>
+
+<!-- posts timeline -->
+<script type="text/javascript">
+		google.load('visualization', '1.0', {'packages':['corechart']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Plus', 'Down'],
+          {% for p in posts %}
+          	['{{ p.date|date:"Y-M-d" }}',  {{ p.plus_votes }}, {{ p.down_votes }}]{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]);
+
+        var options = {
+          'hAxis': {title: 'Date', titleTextStyle: {color: 'red'}}
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('timeline'));
+        chart.draw(data, options);
+      }
+    </script>
+
+{% endblock %}
+
+
+{% block title %}{{ us.username }} stats page - on Postato{% endblock %}
+
+{% block content %}
+<div id="current">
+	
+	<div class="spacer"></div>
+
+	<div id="post_space">
+		<p class="content">
+			back to <a class="link" href="/users/{{ us.id }}/{{ us.username }}">/profile/</a>
+		</p>
+		<p class="title">{{ us.username }}'s reputation</p>
+		<div id="reputation"></div>
+
+		<p class="title" id="users">Posts trend</p>
+		<div id="timeline"></div>
+</div>
+</div>
+
+{% endblock %}

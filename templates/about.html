@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}It works!{% endblock %}
+{% block title %}About Postato{% endblock %}
 
 {% block content %}
 <div id="current">
@@ -7,38 +7,39 @@
 	<div class="spacer"></div>
 
 	<div id="post_space">
-		<p class="title" id="top">About page</h1>
+		<p class="title" id="top">About page</p>
 			<ul>
-				<li><a href="#posta-to">what is potato?</a></li>
-				<li><a href="#does">what does it do?</a></li>
-				<li><a href="#does-not">what doesn't (yet)?</a></li>
-				<li><a href="#to-do">what is planned?</a></li>
+				<li><a class="link" href="#posta-to">what is potato?</a></li>
+				<li><a class="link" href="#does">what does it do?</a></li>
+				<li><a class="link" href="#does-not">what doesn't (yet)?</a></li>
+				<li><a class="link" href="#to-do">what is planned?</a></li>
 			</ul>
 
 		<!-- what is potato? -->
-		<p class="title" id="posta-to">What is Posta-to?</h1>
+		<p class="title" id="posta-to">What is Posta-to?</p>
 		<p class="content">Posta-to is a simple blogging application designed specifically for comic stripes and short messages as well. 
-		It's based on <a href="http://www.allbuttonspressed.com/projects/djangoappengine">djangoappengine</a> and uses <a href="http://www.allbuttonspressed.com/projects/django-filetransfers">django-filetransfers</a> for image uploading.</p>
-		<p class="content">The project code is currently hosted on <a href="https://github.com/samuele-mattiuzzo/posta-to">GitHub</a> and it provides a <a href="https://github.com/samuele-mattiuzzo/posta-to/blob/master/srv/align_libs.py">script</a> that downloads all the required packages. See the <a href="https://github.com/samuele-mattiuzzo/posta-to/blob/master/README.md">README</a> file for further instructions.
+		It's based on <a class="link" href="http://www.allbuttonspressed.com/projects/djangoappengine">djangoappengine</a> and uses <a class="link" href="http://www.allbuttonspressed.com/projects/django-filetransfers">django-filetransfers</a> for image uploading.</p>
+		<p class="content">The project code is currently hosted on <a class="link" href="https://github.com/samuele-mattiuzzo/posta-to">GitHub</a> and it provides a <a class="link" href="https://github.com/samuele-mattiuzzo/posta-to/blob/master/srv/align_libs.py">script</a> that downloads all the required packages. See the <a class="link" href="https://github.com/samuele-mattiuzzo/posta-to/blob/master/README.md">README</a> file for further instructions.
 
 		<!-- what does it do? -->
-		<p class="title" id="does">What does it do?</h1>
+		<p class="title" id="does">What does it do?</p>
 			<ul>
-				<li>Login the admin user</li>
-				<li>Create a new post</li>
+				<li><a class="link" href="/signup/">Register a new user</a></li>
+				<li><a class="link" href="/login/">Login user</a></li>
+				<li><a class="link" href="/top/">View user profile</a></li>
+				<li>View user charts</li>
+				<li><a class="link" href="/posts/new/">Create a new post</a></li>
 				<li>Upload an image with a post</li>
 				<li>Upvote/downvote a post</li>
 				<li>Delete a post</li>
-				<li>Browse posts</li>
+				<li><a class="link" href="/posts/">Browse posts</a></li>
+				<li><a class="link" href="/top/">View rankings</a></li>
 			</ul>
 		</p>
 
 		<!-- what doesn't (yet)? -->
-		<p class="title" id="does-not">What doesn't?</h1>
+		<p class="title" id="does-not">What doesn't?</p>
 			<ul>
-				<li>Register a new user</li>
-				<li>View user profile</li>
-				<li>View user history</li>
 				<li>Delete an image</li>
 				<li>Resize image on upload</li>
 				<li>Share the posts</li>
@@ -46,9 +47,9 @@
 		</p>
 
 		<!-- what is planned -->
-		<p class="title" id="to-do">What is planned?</h1>
+		<p class="title" id="to-do">What is planned?</p>
 			<ul>
-				<li>User profiles and relative pages, with <a href="https://developers.google.com/chart/">googlecharts</a></li>
+				<li>User profiles and relative pages, with <a class="link" href="https://developers.google.com/chart/">googlecharts</a></li>
 				<li>Image uploading with resize (templatetag generates too overhead)</li>
 				<li>Auth with OpenID</li>
 				<li>Post sharing</li>

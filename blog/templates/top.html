@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Top rankings{% endblock %}
+
+{% block content %}
+<div id="current">
+	
+	<div class="spacer"></div>
+
+	<div id="post_space">
+		<p class="title" id="users">Top users</p>
+			<table>
+				<tr><th>RANK</th><th>NAME</th><th>SCORE</th>
+				{% for u in top_users %}
+				<tr><td>{{ forloop.counter }}</td><td>
+					<a class="link" href="/users/{{ u.id }}/{{ u.username }}">{{ u.username }}</a></td><td></td></tr>
+				{% endfor %}
+			</table>
+
+		<p class="title" id="users">Top posts</p>
+			<table>
+				<tr><th>RANK</th><th>TTTLE</th><th>VOTES</th>
+				{% for u in top_posts %}
+				<tr><td>{{ forloop.counter }}</td><td><a class="link" href="/posts/{{ u.id }}/">#{{ u.id }} {{ u.title }}</a></td><td>{{ u.plus_votes }} - {{ u.down_votes }}</td></tr>
+				{% endfor %}
+			</table>
+</div>
+</div>
+{% endblock %}
