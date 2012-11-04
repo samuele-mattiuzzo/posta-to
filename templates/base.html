@@ -14,10 +14,7 @@
       <link href="/media/css/style.css" rel="stylesheet" type="text/css" />
     {% endblock %}
 
-    {% block preload_js %}
-      <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.js"></script>
-      <script type="text/javascript" src="/media/js/script.js"></script>
-    {% endblock %}
+
 
     
 
@@ -46,9 +43,9 @@
 
     {% if next_random %}
     <div id="post_nav_bar">
-      <a href=""><--</a>
+      <a href="">--</a>
       <a href="/posts/{{ next_random.id }}/">RANDOM</a>
-      <a href="">--></a>
+      <a href="">--</a>
     </div>
     {% endif %}
     {% block content %}
@@ -58,7 +55,8 @@
     <div class="menu"> 
       <ul>
           <li><a href="/">HOME</a></li>
-          <li><a href="/top/">RANKINGS</a></li>
+          <li><a href="/users/">USERS</a></li>
+          <li><a href="/top/">TOP POSTS</a></li>
 
         {% if user.is_authenticated %}
           <li><a href="/logout/">LOGOUT</a></li>
@@ -87,5 +85,9 @@
   </div>
 <!-- close #container -->
 </div>
+    {% block preload_js %}
+      <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.js"></script>
+      <script type="text/javascript" src="/media/js/script.js"></script>
+    {% endblock %}
 {% block page_scripts %}{% endblock %}
 </html>

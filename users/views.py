@@ -1,14 +1,25 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
 from users.forms import UserSignupForm
-from blog.models import Post, Comment
+from blog.models import Post
 
 ## custom libs import ##
+
+def view_users(request):
+	'''
+		Lists all users
+	'''
+	users = User.objects.all().order_by('-date_joined')
+
+	return render_to_response(
+		'users.html',
+		locals(),
+		context_instance=RequestContext(request)
+	)
+
 
 def signup(request):
 	'''

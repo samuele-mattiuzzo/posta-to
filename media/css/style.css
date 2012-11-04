@@ -275,6 +275,7 @@ p.err{ color: red; }
 	height: 60px;
 	margin: 0 auto;
 	border-top: 1px solid #000;
+	background-image: url('/media/img/default_post_icon.png');
 	
 }
 

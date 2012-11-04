@@ -53,7 +53,6 @@ def view_top_ranked(request):
 	'''
 		Top 15 users and posts
 	'''
-	top_users = User.objects.all()[:15]
 	top_posts = Post.objects.all().order_by('-plus_votes')[:15]
 
 	return render_to_response(

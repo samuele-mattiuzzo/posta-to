@@ -57,7 +57,10 @@
           {% endif %}
 
         <p class="content">{{ current.content }} </p>
-        <p class="author">{{ current.user.username }}</p>
+        <p class="author">
+          <a class="link" 
+          href="/users/{{ current.user.id }}/{{ current.user.username }}">{{ current.user.username }}</a>
+        </p>
         
         <!-- votes and delete -->
         <div class="extras">

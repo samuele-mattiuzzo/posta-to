@@ -31,6 +31,7 @@ This script downloads for you (either with git or hg):
 + [django-toolbox][3]
 + [django-autoload][4]
 + [django-dbindexer][5]
++ [django-filetransfers][6]
 
 then copies the modules inside your project root folder.
 
@@ -53,7 +54,7 @@ and point your browser to *http://localhost:8000/*
 
 Developement status
 ----------------
-Currently working on the about page and some js
+Currently revising css and image uploading
 
 
 [1]: https://github.com/django-nonrel
@@ -61,3 +62,4 @@ Currently working on the about page and some js
 [3]: https://github.com/django-nonrel/djangotoolbox
 [4]: http://bitbucket.org/twanschik/django-autoload/
 [5]: https://github.com/django-nonrel/django-dbindexer
+[6]: https://bitbucket.org/wkornewald/django-filetransfers

@@ -16,6 +16,8 @@ urlpatterns = patterns('',
     ('^logout/$', 'django.contrib.auth.views.logout'),
 
     ## stats related pages ##
+
+    ('^users/$', 'users.views.view_users'),
     ('^users/(?P<id>\d+)/(?P<username>\w+)$', 'users.views.profile'),
     ('^users/(?P<id>\d+)/(?P<username>\w+)/charts/$', 'users.views.charts'),
     ('^signup/$', 'users.views.signup'),
