@@ -46,7 +46,7 @@ a.link:hover { text-decoration: underline; }
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	color:#B4F257;
 }
-
+#postatobar a { color: #000; text-decoration: none; }
 
 /* Welcomebar */
 #titlebar{
@@ -79,7 +79,7 @@ a.link:hover { text-decoration: underline; }
 
 
 /* post nav bar */
-#main #post_nav_bar{
+#post_nav_bar{
 	background-color: #404040;
 	color: #FFF;
 	border: 1px solid #000;
@@ -89,7 +89,7 @@ a.link:hover { text-decoration: underline; }
 	float:left;
 }
 
-#main #post_nav_bar a {
+#post_nav_bar a {
 	width: 330px;
 	display: block;
 	float: left;
@@ -97,7 +97,7 @@ a.link:hover { text-decoration: underline; }
 	text-decoration: none;
 	color: #FFF;
 }
-#main #post_nav_bar a:hover { text-decoration: none; color: #B4F257; }
+#post_nav_bar a:hover { text-decoration: none; color: #B4F257; }
 
 /* Currently selected post */
 #main #current{

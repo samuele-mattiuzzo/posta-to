@@ -14,18 +14,15 @@
       <link href="/media/css/style.css" rel="stylesheet" type="text/css" />
     {% endblock %}
 
-
-
-    
-
     {% block extra-head %}{% endblock %}
 
 <!-- main content starts here -->
 <div id="container">
   <div id="postatobar">
-    <span class="posta">POSTA</span>TO
+    <a href="/"><span class="posta">POSTA</span>TO</a>
   </div>
   <div id="titlebar"> 
+    <!-- user topbar - will be used for news too -->
     {% if user.is_authenticated %}
     Welcome to postato, 
     <span class="logged">
@@ -40,21 +37,16 @@
 
   <div id="main">
 
-
-    {% if next_random %}
-    <div id="post_nav_bar">
-      <a href="">--</a>
-      <a href="/posts/{{ next_random.id }}/">RANDOM</a>
-      <a href="">--</a>
-    </div>
-    {% endif %}
+    <!-- post/main page content -->
     {% block content %}
     {% endblock %}
 
     <!-- menu column -->
     <div class="menu"> 
       <ul>
-          <li><a href="/">HOME</a></li>
+        {% if next_random %}
+          <li><a href="/posts/{{ next_random.id }}/">RANDOM</a></li>
+        {% endif %}
           <li><a href="/users/">USERS</a></li>
           <li><a href="/top/">TOP POSTS</a></li>
 
@@ -70,10 +62,16 @@
     <div class="spacer"></div>
   </div>
 
-  <div id="history">
-      {% block history %}
-      {% endblock %}
-  </div>
+   <!-- navigation bar -->
+    {% block post_nav_bar %}
+    {% endblock %}
+    
+    <!-- history block -->
+    <div id="history">
+    {% block history %}
+    {% endblock %}
+    </div>
+
   
 
   <div class="spacer"></div>

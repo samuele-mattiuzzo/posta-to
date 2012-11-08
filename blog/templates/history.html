@@ -1,0 +1,38 @@
+{% load render_pictures %}
+
+{% block post_nav_bar %}
+    <!-- navigation bar -->
+    <div id="post_nav_bar">
+
+        {% if posts.has_previous %}
+            <a id="prev_page" href="" onclick="change_page('{{ posts.previous_page_number }}'); return false;"><--</a>
+        {% else %}
+            <a id="prev_page" href="" >BEGIN</a>
+        {% endif %}
+
+            <a id="page_counter"><span class="curr">{{ posts.number }}</span> of {{ posts.paginator.num_pages }} pages</a>
+
+        {% if posts.has_next %}
+            <a id="next_page" href="" onclick="change_page('{{ posts.next_page_number }}'); return false;">--></a>
+        {% else %}
+            <a id="next_page" href="" >END</a>
+        {% endif %}
+
+    </div>
+{% endblock %}
+
+
+{% if posts %}
+    {% for post in posts.object_list %}
+    <div class="listitem {{ post.get_rating }}">
+        <!-- add templatetag to spam background image -->
+        <div class="title" style="{% if post.image %}background-image: url('{% get_resized_image post.image.file 100 %}');{% endif %}" >
+        <a href="/posts/{{ post.id }}/">#{{ post.id }}</a></div>
+        <div class="commentcount">
+          {{ post.date|date:"d M Y"  }}
+        </div>
+      </div>
+    {% endfor %}
+{% endif %}
+
+

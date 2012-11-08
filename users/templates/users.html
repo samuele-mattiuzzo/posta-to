@@ -8,14 +8,14 @@
       <div id="post_space">
       	<p class="title" id="users">Users</p>
       	<table>
-				<tr><th>ID</th><th>NAME</th><th>REG DATE</th>
+      			<!-- users sorted by registration date -->
+				<tr><th>ID</th><th>NAME</th>
 				{% for u in users %}
 				<tr>
 					<td>{{ u.id }}</td>
 					<td>
 					<a class="link" href="/users/{{ u.id }}/{{ u.username }}">{{ u.username }}</a>
 					</td>
-					<td>{{ u.date_joined|date:"Y-M-d" }}</td>
 				</tr>
 				{% endfor %}
 			</table>

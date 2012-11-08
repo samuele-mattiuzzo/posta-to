@@ -5,6 +5,9 @@ handler500 = 'djangotoolbox.errorviews.server_error'
 urlpatterns = patterns('',
     ('^_ah/warmup$', 'djangoappengine.views.warmup'),
 
+    ## image serving ##
+    ('^posts/download/(?P<id>\d+)/$', 'blog.views.download_handler'),
+
     ## homepage ##
     ('^$', 'blog.views.view_posts'),
 
@@ -16,7 +19,6 @@ urlpatterns = patterns('',
     ('^logout/$', 'django.contrib.auth.views.logout'),
 
     ## stats related pages ##
-
     ('^users/$', 'users.views.view_users'),
     ('^users/(?P<id>\d+)/(?P<username>\w+)$', 'users.views.profile'),
     ('^users/(?P<id>\d+)/(?P<username>\w+)/charts/$', 'users.views.charts'),
@@ -29,8 +31,8 @@ urlpatterns = patterns('',
     ('^posts/delete/(?P<id>\d+)/$', 'blog.views.delete_post'),
     ('^top/$', 'blog.views.view_top_ranked'),
 
-    ## image serving ##
-    ('^posts/download/(?P<id>\d+)/$', 'blog.views.download_handler'),
+    ## post pagination ##
+    ('^posts/paginate/(?P<page>\d+)/$', 'blog.views.paginate_posts'),
 
     ## comment related urls (ajax) ##
     ('^comment/new/$', 'blog.ajax.new_comment'),
