@@ -54,7 +54,10 @@ and point your browser to *http://localhost:8000/*
 
 Developement status
 ----------------
-Currently revising css and image uploading
+- Tagging system (new one or maybe [django-tagging][7])
+- Image uploading with resizing
+- Image cancellation
+- Css color restyling
 
 
 [1]: https://github.com/django-nonrel
@@ -63,3 +66,4 @@ Currently revising css and image uploading
 [4]: http://bitbucket.org/twanschik/django-autoload/
 [5]: https://github.com/django-nonrel/django-dbindexer
 [6]: https://bitbucket.org/wkornewald/django-filetransfers
+[7]: http://code.google.com/p/django-tagging/
