@@ -61,7 +61,7 @@ def paginate_posts(request, page):
 		Returns a page of posts (for pagination)
 	'''
 	all_posts = Post.objects.all().order_by('-date')
-	paginator = Paginator(all_posts, 2)
+	paginator = Paginator(all_posts, 7)
 
 	posts = paginator.page(page)
 
@@ -112,8 +112,6 @@ def new_post(request):
 	form = PostForm()
 	view_url = reverse('blog.views.new_post')
 	upload_url, upload_data = prepare_upload(request, view_url)
-
-	print upload_data
 
 	if request.method == 'POST':
 		form = PostForm(request.POST, request.FILES)

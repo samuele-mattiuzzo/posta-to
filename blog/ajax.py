@@ -16,6 +16,7 @@ def new_comment(request):
 		Ajax view to append a comment
 	'''
 	comments = None
+	post = None
 	status = "err"
 	form = CommentForm()
 
@@ -50,7 +51,7 @@ def new_comment(request):
 
 	return render_to_response(
 		'comments.html', 
-		{'coms' : comments, 'msg' : msg, 'class' : status },
+		{'coms' : comments, 'current':post, 'msg' : msg, 'class' : status },
 		context_instance=RequestContext(request)
 	)
 

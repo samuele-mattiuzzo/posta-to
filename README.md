@@ -23,7 +23,6 @@ There's a script provided inside *srv* folder:
         % cd posta-to/srv
         % python align_libs.py
 
-
 This script downloads for you (either with git or hg):
 
 + [django-nonrel][1]
@@ -38,22 +37,21 @@ then copies the modules inside your project root folder.
 **NOTE**: make sure you have python, git and mercurial installed before running this script.
 
 Last thing to do is pushing some data inside the database.
-Theres a json dump called *initial_data.json* in the project root.
 
         % python manage.py syncdb
 
-Manage.py command will automatically load the json dump.
-Insert an admin user when prompted for
+Insert an admin user when prompted for (not required)
 
 Launch the application:
 
-		% python manage.py runserver
+		% dev_appserver.py .
 
-and point your browser to *http://localhost:8000/*
+and point your browser to *http://localhost:8080/*
 
 
 Developement status
 ----------------
+- Vote tracking for users
 - Tagging system (new one or maybe [django-tagging][7])
 - Image uploading with resizing
 - Image cancellation
