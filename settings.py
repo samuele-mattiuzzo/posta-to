@@ -19,7 +19,7 @@ INSTALLED_APPS = (
     'djangotoolbox',
     'autoload',
     'dbindexer',
-    'filetransfers',    
+    'filetransfers',
 
     # apps
     'blog',

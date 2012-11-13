@@ -6,6 +6,7 @@ import os, shutil
 	ALIGN LIBS SCRIPT:
 
 	Requirements:
+	- svn
 	- git
 	- mercurial
 	- python
@@ -28,6 +29,7 @@ FOLDERS = [
 	("django-autoload/autoload", "autoload"),
 	("django-dbindexer/dbindexer", "dbindexer"),
 	("django-filetransfers/filetransfers", "filetransfers"),
+	("trunk/tagging", "tagging"),
 ]
 
 ## Repositories (with type associated)
@@ -38,6 +40,7 @@ REPOS = [
 	("hg", "https://bitbucket.org/twanschik/django-autoload"),
 	("git", "https://github.com/django-nonrel/django-dbindexer.git"),
 	("hg", "https://bitbucket.org/wkornewald/django-filetransfers"),
+	#("svn", "http://django-tagging.googlecode.com/svn/trunk/"),
 ]
 
 def main():
@@ -50,7 +53,8 @@ def main():
 
 	# cloning process
 	for r in REPOS:
-		call([r[0], "clone", r[1]])		
+		action = "checkout" if "svn" in r[0] else "clone"
+		call([r[0], action, r[1]])		
 	
 	os.chdir("..")
 

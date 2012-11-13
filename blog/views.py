@@ -107,6 +107,7 @@ def download_handler(request, id):
 def new_post(request):
 	'''
 		Creates a new post with image
+		@TODO: image resizing (and thumbnail generation, to avoid templatetag overhead)
 	'''
 	form = PostForm()
 	view_url = reverse('blog.views.new_post')
@@ -117,10 +118,9 @@ def new_post(request):
 	if request.method == 'POST':
 		form = PostForm(request.POST, request.FILES)
 		if form.is_valid():
-			## need to add image resizing when uploading, templatetag generates too much overhead
 			post = form.save(user=request.user)
 			return HttpResponseRedirect('/posts/%d/' % post.id)
-	
+
 	return render_to_response(
 		'new_post.html',
 		locals(), 

@@ -7,15 +7,19 @@
         {% if posts.has_previous %}
             <a id="prev_page" href="" onclick="change_page('{{ posts.previous_page_number }}'); return false;"><--</a>
         {% else %}
-            <a id="prev_page" href="" >BEGIN</a>
+            <a id="prev_page" href="" >--></a>
         {% endif %}
 
+        {% if posts.number %}
             <a id="page_counter"><span class="curr">{{ posts.number }}</span> of {{ posts.paginator.num_pages }} pages</a>
+        {% else %}
+            <a id="page_counter">I'm in the middle! Also, no pages :(</a>
+        {% endif %}
 
         {% if posts.has_next %}
             <a id="next_page" href="" onclick="change_page('{{ posts.next_page_number }}'); return false;">--></a>
         {% else %}
-            <a id="next_page" href="" >END</a>
+            <a id="next_page" href="" ><--</a>
         {% endif %}
 
     </div>

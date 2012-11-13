@@ -58,6 +58,7 @@ def new_comment(request):
 def vote_post(request, id, vote):
 	''' 
 		Ajax view to cast a vote for a post
+		@TODO: check if player already voted
 	'''
 	n = 0.0
 

@@ -27,7 +27,6 @@ class Post(models.Model):
 		'''
 			Used in templates, for now
 		'''
-
 		rate_up = self.plus_votes/(self.plus_votes+self.down_votes) if self.plus_votes > 0.0 else 0.0
 		rate_down = self.down_votes/(self.plus_votes+self.down_votes) if self.down_votes > 0.0 else 0.0
 		
